@@ -29,8 +29,8 @@ public class UserController {
      * 根据条件返回用户
      * @return
      */
-    @PostMapping("/list")
-    public R selectUserList(@RequestBody UserQueryVo vo) {
+    @GetMapping("/list")
+    public R selectUserList(UserQueryVo vo) {
         log.info("查询条件: {}", vo);
         List<UserViewVo> userViewVos = userService.selectUserList(vo);
         return R.ok().put("data",userViewVos);

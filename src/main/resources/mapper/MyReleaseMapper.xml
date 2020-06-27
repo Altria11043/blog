@@ -137,4 +137,24 @@
     <include refid="Blob_Column_List" />
     from my_release
   </select>
+  <select id="selectRelease" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from my_release
+    <where>
+      <if test="content != '' and content != null">
+        OR id = #{content,jdbcType=INTEGER}
+        OR c_tag LIKE concat('%',#{content,jdbcType=VARCHAR},'%')
+        OR title LIKE concat('%',#{content,jdbcType=VARCHAR},'%')
+      </if>
+      <if test="startDate != null">
+        AND startDate &gt;= #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endDate != null">
+        AND endDate &lt;= #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+  </select>
 </mapper>

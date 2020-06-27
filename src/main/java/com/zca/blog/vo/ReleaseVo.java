@@ -18,4 +18,6 @@ public class ReleaseVo {
     private List<String> listTag;
 
     private String title;
+
+    private Integer id;
 }

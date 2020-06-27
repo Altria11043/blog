@@ -3,6 +3,7 @@ package com.zca.blog.serive.impl;
 import com.zca.blog.dao.MyReleaseMapper;
 import com.zca.blog.entities.MyRelease;
 import com.zca.blog.serive.IMyReleaseService;
+import com.zca.blog.vo.LookUpReleaseVo;
 import com.zca.blog.vo.ReleaseVo;
 import com.zca.blog.vo.ReleaseTableVo;
 import org.springframework.beans.BeanUtils;
@@ -70,8 +71,9 @@ public class MyReleaseServiceImpl implements IMyReleaseService {
     }
 
     @Override
-    public List<ReleaseTableVo> getReleaseTable() {
-        List<MyRelease> myReleases = releaseMapper.selectAll();
+    public List<ReleaseTableVo> getReleaseTable(LookUpReleaseVo vo) {
+
+        List<MyRelease> myReleases = releaseMapper.selectRelease(vo);
         List<ReleaseTableVo> tt = myReleases.stream().map(data -> {
             ReleaseTableVo releaseTableVo = new ReleaseTableVo();
             releaseTableVo.setTitle(data.getTitle());
@@ -82,5 +84,13 @@ public class MyReleaseServiceImpl implements IMyReleaseService {
             return releaseTableVo;
         }).collect(Collectors.toList());
         return tt;
+    }
+
+    @Override
+    public Integer updateState(ReleaseVo vo) {
+        MyRelease release = new MyRelease();
+        release.setId(vo.getId());
+        release.setState(vo.getState());
+        return releaseMapper.updateByPrimaryKeySelective(release);
     }
 }

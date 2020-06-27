@@ -3,6 +3,7 @@ package com.zca.blog.controller;
 import com.zca.blog.comment.R;
 import com.zca.blog.entities.MyRelease;
 import com.zca.blog.serive.IMyReleaseService;
+import com.zca.blog.vo.LookUpReleaseVo;
 import com.zca.blog.vo.ReleaseVo;
 import com.zca.blog.vo.ReleaseTableVo;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +40,11 @@ public class MyReleaseController {
         return R.ok().put("data", tt);
     }
 
+//    @RequestParam(required = false)
     @GetMapping("/getReleaseTable")
-    public R getReleaseTable() {
-        List<ReleaseTableVo> vos = releaseService.getReleaseTable();
-        log.info("表格内容: {}", vos);
+    public R getReleaseTable(LookUpReleaseVo vo) {
+        log.info("查询内容: {}", vo);
+        List<ReleaseTableVo> vos = releaseService.getReleaseTable(vo);
         return R.ok().put("data", vos);
     }
 
@@ -62,4 +64,11 @@ public class MyReleaseController {
         Integer res = releaseService.updateRelease(vo);
         return R.ok().put("data", res);
     }
+
+    @PostMapping("/state")
+    public R updataState(@RequestBody ReleaseVo vo) {
+        Integer res = releaseService.updateState(vo);
+        return R.ok().put("data", res);
+    }
+
 }

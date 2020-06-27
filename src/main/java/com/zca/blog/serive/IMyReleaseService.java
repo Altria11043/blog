@@ -1,6 +1,7 @@
 package com.zca.blog.serive;
 
 import com.zca.blog.entities.MyRelease;
+import com.zca.blog.vo.LookUpReleaseVo;
 import com.zca.blog.vo.ReleaseVo;
 import com.zca.blog.vo.ReleaseTableVo;
 
@@ -16,5 +17,7 @@ public interface IMyReleaseService {
 
     Integer updateRelease(ReleaseVo vo);
 
-    List<ReleaseTableVo> getReleaseTable();
+    List<ReleaseTableVo> getReleaseTable(LookUpReleaseVo vo);
+
+    Integer updateState(ReleaseVo vo);
 }
