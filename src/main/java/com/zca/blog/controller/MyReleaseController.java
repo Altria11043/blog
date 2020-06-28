@@ -50,12 +50,12 @@ public class MyReleaseController {
 
     /**
      * 获取到当个文章的数据
-     * @param Id
+     * @param id
      * @return
      */
     @GetMapping("/get")
-    public R getRelease(@RequestParam("Id") Integer Id) {
-        MyRelease release = releaseService.getRelease(Id);
+    public R getRelease(@RequestParam("id") Integer id) {
+        MyRelease release = releaseService.getRelease(id);
         return R.ok().put("data", release);
     }
 

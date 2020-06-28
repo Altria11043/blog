@@ -4,10 +4,7 @@ import com.zca.blog.comment.PwdUtil;
 import com.zca.blog.dao.UserMapper;
 import com.zca.blog.entities.User;
 import com.zca.blog.serive.IUserService;
-import com.zca.blog.vo.LoginVo;
-import com.zca.blog.vo.UpdatePwdVo;
-import com.zca.blog.vo.UserQueryVo;
-import com.zca.blog.vo.UserViewVo;
+import com.zca.blog.vo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +62,9 @@ public class UserServiceImpl implements IUserService {
 
     @Transactional
     @Override
-    public Integer addUser(User user) {
+    public Integer addUser(AddUserVo userVo) {
+        User user = new User();
+        BeanUtils.copyProperties(userVo, user);
         try {
             String pwdSHA = PwdUtil.pwdSHA(user.getPassword());
             user.setPassword(pwdSHA);

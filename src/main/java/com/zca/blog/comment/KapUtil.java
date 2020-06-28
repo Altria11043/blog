@@ -44,6 +44,7 @@ public class KapUtil {
         //获取生成的验证码
         String verifyCodeExpected = (String) request.getSession().getAttribute(com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
         //获取用户输入的验证码
+        log.info("验证码比较时ID: {}", request.getSession().getId());
 //        String verifyCodeActual = KapUtil.getString(request, "kap");
         if(kap == null ||!kap.equalsIgnoreCase(verifyCodeExpected)) {
             return false;

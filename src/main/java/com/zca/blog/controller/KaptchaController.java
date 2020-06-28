@@ -39,6 +39,7 @@ public class KaptchaController {
         //生成验证码
         String capText = captchaProducer.createText();
         session.setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+        log.info("验证码存入时ID: {}", session.getId());
         //向客户端写出
         BufferedImage bi = captchaProducer.createImage(capText);
         ServletOutputStream out = null;

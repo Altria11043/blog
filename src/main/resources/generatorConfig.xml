@@ -45,7 +45,7 @@
         <!-- 为了避免生成多余的类, 在后面添加对应的值 -->
         <!-- mvn mybatis-generator:generate -->
 <!--        <table tableName="user" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>-->
-        <table tableName="my_release" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
+        <table tableName="game_class" enableCountByExample="false" enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"></table>
 
     </context>
 </generatorConfiguration>

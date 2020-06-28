@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zca.blog.dao.MyGameMapper">
+  <resultMap id="BaseResultMap" type="com.zca.blog.entities.MyGame">
+    <id column="g_id" jdbcType="INTEGER" property="gId" />
+    <result column="game_title" jdbcType="VARCHAR" property="gameTitle" />
+    <result column="g_tag" jdbcType="VARCHAR" property="gTag" />
+    <result column="game_class" jdbcType="INTEGER" property="gameClass" />
+    <result column="state" jdbcType="INTEGER" property="state" />
+    <result column="creator_time" jdbcType="TIMESTAMP" property="creatorTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="game_cover" jdbcType="VARCHAR" property="gameCover" />
+    <result column="game_preview" jdbcType="VARCHAR" property="gamePreview" />
+    <result column="creator_person" jdbcType="VARCHAR" property="creatorPerson" />
+    <result column="creator_id" jdbcType="INTEGER" property="creatorId" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.zca.blog.entities.MyGame">
+    <result column="game_content" jdbcType="LONGVARCHAR" property="gameContent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    g_id, game_title, g_tag, game_class, state, creator_time, update_time, game_cover, 
+    game_preview, creator_person, creator_id
+  </sql>
+  <sql id="Blob_Column_List">
+    game_content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from my_game
+    where g_id = #{gId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from my_game
+    where g_id = #{gId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zca.blog.entities.MyGame">
+    insert into my_game (g_id, game_title, g_tag, 
+      game_class, state, creator_time, 
+      update_time, game_cover, game_preview, 
+      creator_person, creator_id, game_content
+      )
+    values (#{gId,jdbcType=INTEGER}, #{gameTitle,jdbcType=VARCHAR}, #{gTag,jdbcType=VARCHAR}, 
+      #{gameClass,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, #{creatorTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{gameCover,jdbcType=VARCHAR}, #{gamePreview,jdbcType=VARCHAR}, 
+      #{creatorPerson,jdbcType=VARCHAR}, #{creatorId,jdbcType=INTEGER}, #{gameContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zca.blog.entities.MyGame">
+    insert into my_game
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        g_id,
+      </if>
+      <if test="gameTitle != null">
+        game_title,
+      </if>
+      <if test="gTag != null">
+        g_tag,
+      </if>
+      <if test="gameClass != null">
+        game_class,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="creatorTime != null">
+        creator_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="gameCover != null">
+        game_cover,
+      </if>
+      <if test="gamePreview != null">
+        game_preview,
+      </if>
+      <if test="creatorPerson != null">
+        creator_person,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="gameContent != null">
+        game_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="gId != null">
+        #{gId,jdbcType=INTEGER},
+      </if>
+      <if test="gameTitle != null">
+        #{gameTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gTag != null">
+        #{gTag,jdbcType=VARCHAR},
+      </if>
+      <if test="gameClass != null">
+        #{gameClass,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="creatorTime != null">
+        #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameCover != null">
+        #{gameCover,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePreview != null">
+        #{gamePreview,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorPerson != null">
+        #{creatorPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="gameContent != null">
+        #{gameContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zca.blog.entities.MyGame">
+    update my_game
+    <set>
+      <if test="gameTitle != null">
+        game_title = #{gameTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gTag != null">
+        g_tag = #{gTag,jdbcType=VARCHAR},
+      </if>
+      <if test="gameClass != null">
+        game_class = #{gameClass,jdbcType=INTEGER},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="creatorTime != null">
+        creator_time = #{creatorTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gameCover != null">
+        game_cover = #{gameCover,jdbcType=VARCHAR},
+      </if>
+      <if test="gamePreview != null">
+        game_preview = #{gamePreview,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorPerson != null">
+        creator_person = #{creatorPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="gameContent != null">
+        game_content = #{gameContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zca.blog.entities.MyGame">
+    update my_game
+    set game_title = #{gameTitle,jdbcType=VARCHAR},
+      g_tag = #{gTag,jdbcType=VARCHAR},
+      game_class = #{gameClass,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      creator_time = #{creatorTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      game_cover = #{gameCover,jdbcType=VARCHAR},
+      game_preview = #{gamePreview,jdbcType=VARCHAR},
+      creator_person = #{creatorPerson,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=INTEGER},
+      game_content = #{gameContent,jdbcType=LONGVARCHAR}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zca.blog.entities.MyGame">
+    update my_game
+    set game_title = #{gameTitle,jdbcType=VARCHAR},
+      g_tag = #{gTag,jdbcType=VARCHAR},
+      game_class = #{gameClass,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      creator_time = #{creatorTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      game_cover = #{gameCover,jdbcType=VARCHAR},
+      game_preview = #{gamePreview,jdbcType=VARCHAR},
+      creator_person = #{creatorPerson,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=INTEGER}
+    where g_id = #{gId,jdbcType=INTEGER}
+  </update>
+</mapper>

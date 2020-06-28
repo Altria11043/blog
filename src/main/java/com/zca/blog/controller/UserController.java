@@ -3,10 +3,12 @@ package com.zca.blog.controller;
 import com.zca.blog.comment.R;
 import com.zca.blog.entities.User;
 import com.zca.blog.serive.IUserService;
+import com.zca.blog.vo.AddUserVo;
 import com.zca.blog.vo.UpdatePwdVo;
 import com.zca.blog.vo.UserQueryVo;
 import com.zca.blog.vo.UserViewVo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,8 +63,8 @@ public class UserController {
      * @return
      */
     @PostMapping("/add")
-    public R addUser(@RequestBody User user){
-        Integer integer = userService.addUser(user);
+    public R addUser(@RequestBody AddUserVo userVo){
+        Integer integer = userService.addUser(userVo);
         return R.ok().put("data", integer);
     }
 

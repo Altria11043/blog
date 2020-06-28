@@ -6,10 +6,7 @@ import com.zca.blog.serive.IUserService;
 import com.zca.blog.vo.LoginVo;
 import com.zca.blog.vo.UserViewVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,9 +20,9 @@ public class LoginController {
     @Autowired
     private IUserService userService;
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public R login(HttpServletRequest request,
-                   @RequestBody LoginVo vo) {
+                   LoginVo vo) {
         if (!KapUtil.checkVerifyCode(request, vo.getKap())){
             return R.ok().put("data", "ERR_KAP");
         }
