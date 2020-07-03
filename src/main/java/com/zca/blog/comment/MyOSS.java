@@ -29,8 +29,8 @@ public class MyOSS {
     @Bean
     public Map<String, String> policy() {
         String endpoint = "oss-cn-shenzhen.aliyuncs.com";
-        String accessId = "LTAI4GEHp48ULZ5eds32mDk5";
-        String accessKey = "dXOCzVtcR3XQGX5jtTlv4WGGl3gHOM";
+        String accessId = "accessId";
+        String accessKey = "accessKey";
 
         String bucket = "myblog-altria"; // 请填写您的 bucketname 。
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
