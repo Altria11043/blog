@@ -21,8 +21,6 @@ import java.util.Map;
 public class MyOSS {
 
     /**
-     * LTAI4GEHp48ULZ5eds32mDk5
-     * dXOCzVtcR3XQGX5jtTlv4WGGl3gHOM
      * @return
      */
 
